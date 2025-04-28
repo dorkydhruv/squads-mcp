@@ -7,12 +7,12 @@ export function registerTools(server: McpServer) {
   // Example: registerTool('toolName', toolFunction);
 
   // Config and Wallet tools
-  configTools.map((tool) => {
+  configTools.forEach((tool) => {
     server.tool(tool.name, tool.description, tool.schema, tool.run);
   });
 
   // Main sqds tools
-  sqdsTools.map((tool) => {
+  sqdsTools.forEach((tool) => {
     server.tool(tool.name, tool.description, tool.schema, tool.run);
   });
 }

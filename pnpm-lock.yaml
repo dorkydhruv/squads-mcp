@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@modelcontextprotocol/sdk':
-        specifier: ^1.10.2
+        specifier: ^1.6.1
         version: 1.10.2
       '@solana/web3.js':
         specifier: ^1.98.2

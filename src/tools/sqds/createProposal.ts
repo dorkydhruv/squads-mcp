@@ -5,7 +5,7 @@ import * as multisig from "@sqds/multisig";
 import { PublicKey } from "@solana/web3.js";
 
 const createProposal = {
-  name: "createProposal",
+  name: "CREATE_PROPOSAL",
   description:
     "Create a proposal for a Squads multisig transaction. Proposals are required for voting and execution. Use the transactionIndex from your vault or config transaction.",
   schema: {

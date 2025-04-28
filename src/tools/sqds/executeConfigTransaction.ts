@@ -5,7 +5,7 @@ import * as multisig from "@sqds/multisig";
 import { PublicKey } from "@solana/web3.js";
 
 const executeConfigTransaction = {
-  name: "executeConfigTransaction",
+  name: "EXECUTE_CONFIG_TRANSACTION",
   description:
     "Execute a config transaction for a Squads multisig. Member must have 'Executor' permissions and the proposal must be approved.",
   schema: {

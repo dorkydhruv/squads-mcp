@@ -11,7 +11,8 @@ import {
   CONFIG_DIR,
   DEFAULT_RPC_ENDPOINT,
 } from "../utils/constants";
-
+import pkg from "bs58";
+const { decode } = pkg;
 export async function getConfig(): Promise<SquadsConfig | null> {
   try {
     await fs.ensureDir(CONFIG_DIR);
@@ -61,7 +62,7 @@ export async function getWallet(): Promise<SquadsWallet | null> {
 
 export async function getConnection(): Promise<Connection | null> {
   const config = await getConfig();
-  const rpcUrl = config?.squads?.rpcUrl;
+  const rpcUrl = config?.wallet?.rpcUrl || config?.squads?.rpcUrl;
   if (!rpcUrl) return null;
   return new Connection(rpcUrl, "confirmed");
 }
@@ -73,7 +74,7 @@ export function getKeypairFromPrivateKey(privateKey: string): Keypair {
   }
   // assume base58
   const bs58 = require("bs58");
-  return Keypair.fromSecretKey(Uint8Array.from(bs58.decode(privateKey)));
+  return Keypair.fromSecretKey(Uint8Array.from(Array.from(decode(privateKey))));
 }
 
 export async function getWalletBalance(): Promise<number | null> {

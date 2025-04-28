@@ -5,7 +5,7 @@ import * as multisig from "@sqds/multisig";
 import { PublicKey } from "@solana/web3.js";
 
 const cancelProposal = {
-  name: "cancelProposal",
+name: "CANCEL_PROPOSAL",
   description:
     "Cancel a proposal for a Squads multisig transaction. Member must have 'Voter' permissions. Proposal must be stale or approved.",
   schema: {

@@ -11,26 +11,26 @@ const showConfigTool = {
   async run() {
     try {
       const context = await useMcpContext();
-      if (!context.connection || !context.wallet) {
+      if (!context.connection || !context.keypair) {
         return mcpError("No wallet or connection configured.");
       }
-      const { connection, wallet, multisigAddress } = context;
+      const { connection, keypair, multisigAddress } = context;
       // Optionally, fetch balance if keypair is available
       let balance = undefined;
-      if (context.keypair && context.connection) {
+      if (keypair && context.connection) {
         try {
-          balance = await context.connection.getBalance(
-            context.keypair.publicKey
-          );
+          balance = await context.connection.getBalance(keypair.publicKey);
         } catch {}
       }
       return mcpText(
         JSON.stringify(
           {
-            connection,
-            wallet: wallet ? { ...wallet, privateKey: "[hidden]" } : undefined,
+            connection: connection.rpcEndpoint,
+            publicKey: keypair.publicKey.toBase58(),
             walletBalance:
-              balance !== undefined ? balance / LAMPORTS_PER_SOL : undefined,
+              balance !== undefined
+                ? `${balance / LAMPORTS_PER_SOL} SOL`
+                : undefined,
             activeSquadsMultisig: multisigAddress?.toBase58(),
           },
           null,

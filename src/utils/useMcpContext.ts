@@ -19,7 +19,6 @@ export async function useMcpContext() {
     : undefined;
   return {
     connection,
-    wallet,
     keypair,
     multisigAddress,
   };

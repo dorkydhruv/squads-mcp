@@ -1,13 +1,13 @@
 import { z } from "zod";
 import { useMcpContext } from "../../utils/useMcpContext";
 import { mcpText, mcpError } from "../../utils/mcp-helpers";
-import multisig from "@sqds/multisig";
+import * as multisig from "@sqds/multisig";
 import { Keypair, PublicKey, Transaction } from "@solana/web3.js";
 import { setActiveSquadsMultisig } from "../../utils/config-utils";
 import { sendTx } from "../../utils/send-tx";
 
 const createSquadsMultisigTool = {
-  name: "createSquadsMultisig",
+  name: "CREATE_SQUADS_MULTISIG",
   description:
     "Create a squads multisig account on Solana blockchain. Expects a name, list of owner addresses, threshold, and permissions.",
   schema: {

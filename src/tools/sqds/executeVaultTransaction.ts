@@ -5,7 +5,7 @@ import * as multisig from "@sqds/multisig";
 import { PublicKey } from "@solana/web3.js";
 
 const executeVaultTransaction = {
-  name: "executeVaultTransaction",
+  name: "EXECUTE_VAULT_TRANSACTION",
   description:
     "Execute an approved vault transaction for a Squads multisig. Member must have 'Executor' permissions and the proposal must be approved.",
   schema: {

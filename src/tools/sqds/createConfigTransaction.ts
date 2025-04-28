@@ -52,7 +52,7 @@ const actionSchema = z.discriminatedUnion("__kind", [
 ]);
 
 const createConfigTransactionTool = {
-  name: "createConfigTransaction",
+  name: "CREATE_CONFIG_TRANSACTION",
   description:
     "Create a config transaction for a Squads multisig. Supports actions: AddMember, RemoveMember, ChangeThreshold, SetTimeLock, AddSpendingLimit, RemoveSpendingLimit, SetRentCollector.",
   schema: {

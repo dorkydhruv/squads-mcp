@@ -5,7 +5,7 @@ import * as multisig from "@sqds/multisig";
 import { PublicKey } from "@solana/web3.js";
 
 const approveProposal = {
-  name: "approveProposal",
+  name: "APPROVE_PROPOSAL",
   description:
     "Approve a proposal for a Squads multisig transaction. Member must have 'Voter' permissions.",
   schema: {

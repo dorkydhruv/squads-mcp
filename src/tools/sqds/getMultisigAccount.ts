@@ -2,7 +2,7 @@ import { z } from "zod";
 import { PublicKey, Connection } from "@solana/web3.js";
 import * as multisig from "@sqds/multisig";
 import { useMcpContext } from "../../utils/useMcpContext";
-import { mcpError } from "../../utils/mcp-helpers";
+import { mcpError, mcpText } from "../../utils/mcp-helpers";
 
 const getMultisigAccountTool = {
   name: "GET_MULTISIG_ACCOUNT",
@@ -42,8 +42,13 @@ const getMultisigAccountTool = {
           context.connection,
           multisigPda
         );
-
-      return multisigAccount;
+      return mcpText(
+        `Multisig account fetched successfully: ${JSON.stringify(
+          multisigAccount,
+          null,
+          2
+        )}`
+      );
     } catch (error) {
       return mcpError(
         `Failed to fetch multisig account ${JSON.stringify(error)}`
