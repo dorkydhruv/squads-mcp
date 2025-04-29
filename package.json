@@ -1,12 +1,24 @@
 {
   "name": "squads-mcp",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.1.0",
+  "description": "Secure MCP implementation for Squads multisig management on Solana blockchain",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "solana",
+    "blockchain",
+    "multisig",
+    "squads",
+    "mcp",
+    "model-context-protocol"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dorkydhruv/squads-mcp.git"
+  },
   "scripts": {
     "build": "tsc"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.9.0",
@@ -29,5 +41,8 @@
     "path": "^0.12.7",
     "typescript": "^5.8.3",
     "zod": "^3.24.3"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   }
 }

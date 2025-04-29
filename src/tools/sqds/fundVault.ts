@@ -76,8 +76,7 @@ const fundVault = {
       const tx = await sendTx(context.connection, context.keypair, [ix]);
       if (!tx) return mcpError("Transaction failed");
       return mcpText(
-        `Vault funded with ${amountToFund} SOL. Transaction: ${tx.data}`,
-        "Next step: If this is a new transaction, create a proposal for it so it can be approved by the multisig."
+        `Vault funded with ${amountToFund} SOL. Transaction: ${tx.data}`
       );
     } catch (e: any) {
       return mcpError(
