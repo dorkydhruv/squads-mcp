@@ -7,16 +7,22 @@ import { PublicKey } from "@solana/web3.js";
 const executeConfigTransaction = {
   name: "EXECUTE_CONFIG_TRANSACTION",
   description:
-    "Execute a config transaction for a Squads multisig. Member must have 'Executor' permissions and the proposal must be approved.",
+    "Execute a config transaction for a Squads multisig. Member must have 'Executor' permissions and the proposal must be approved. SECURITY: Always verify the transaction index and proposal details before executing. Wait at least 2 minutes after approval for critical actions.",
   schema: {
-    multisigAddress: z.string().describe("The Squads multisig address."),
+    multisigAddress: z
+      .string()
+      .describe(
+        "The Squads multisig address. SECURITY: Double-check this address before executing."
+      ),
     transactionIndex: z
       .union([z.string(), z.number()])
-      .describe("The transaction index to execute (as string or number)."),
+      .describe(
+        "The transaction index to execute (as string or number). SECURITY: Confirm this matches the intended proposal."
+      ),
     member: z
       .string()
       .describe(
-        "The public key of the member executing the config transaction."
+        "The public key of the member executing the config transaction. SECURITY: Use a hardware wallet if possible."
       ),
   },
   async run(args: {

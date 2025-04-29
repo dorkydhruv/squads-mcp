@@ -8,30 +8,47 @@ import { createVaultTx } from "../../utils/sqds/create-vault-tx";
 const transferSolFromVault = {
   name: "TRANSFER_SOL_FROM_VAULT",
   description:
-    "Transfer SOL from a multisig vault to a specified address. Creates and submits the transaction directly.",
+    "Transfer SOL from a multisig vault to a specified address. SECURITY: For large amounts, use a hardware wallet and verify the destination address. Always double-check the recipient address and vault index. Creates and submits the transaction directly.",
   schema: {
-    amountToTransfer: z.number().describe("The amount to transfer in SOL"),
+    amountToTransfer: z
+      .number()
+      .describe(
+        "The amount to transfer in SOL. SECURITY: For large amounts (10+ SOL), use a hardware wallet and double-check the address."
+      ),
     vaultIndex: z
       .number()
       .int()
       .default(0)
-      .describe("The index of the vault (optional, usually use 0)")
+      .describe(
+        "The index of the vault (optional, usually use 0). SECURITY: Confirm the correct vault index for your use case."
+      )
       .optional(),
     multisigAddress: z
       .string()
       .describe(
-        "The address of the multisig we are funding. Optional, might be already defined in the config"
+        "The address of the multisig we are funding. SECURITY: Triple-check this address before transferring. Optional, might be already defined in the config."
       )
       .optional(),
-    sendToAddress: z.string().describe("The address to send the SOL to"),
-    memo: z.string().optional().describe("Optional memo for the transaction"),
+    sendToAddress: z
+      .string()
+      .describe(
+        "The address to send the SOL to. SECURITY: Double-check this address before submitting."
+      ),
+    memo: z
+      .string()
+      .optional()
+      .describe(
+        "Optional memo for the transaction. SECURITY: Do not include sensitive information in memos."
+      ),
     ephemeralSigners: z
       .number()
       .int()
       .min(0)
       .default(0)
       .optional()
-      .describe("Number of ephemeral signers required"),
+      .describe(
+        "Number of ephemeral signers required. SECURITY: Use only if you understand the implications."
+      ),
   },
   async run({
     amountToTransfer,
@@ -98,9 +115,12 @@ const transferSolFromVault = {
       });
 
       return mcpText(
-        `Successfully created a vault transaction to transfer ${amountToTransfer} SOL to ${sendToAddress}.\n\n` +
-          `Transaction details:\n${JSON.stringify(result, null, 2)}`,
-        `Proposal accounts must be created to successfully vote and execute vault transactions, therefore please create a proposal.`
+        `Successfully created a vault transaction to transfer ${amountToTransfer} SOL to ${sendToAddress}.\n\nTransaction details:\n${JSON.stringify(
+          result,
+          null,
+          2
+        )}`,
+        "Next step: Create a proposal for this transaction so it can be approved by the multisig."
       );
     } catch (e: any) {
       console.error(e);

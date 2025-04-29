@@ -9,26 +9,36 @@ import { sendTx } from "../../utils/send-tx";
 const createSquadsMultisigTool = {
   name: "CREATE_SQUADS_MULTISIG",
   description:
-    "Create a squads multisig account on Solana blockchain. Expects a name, list of owner addresses, threshold, and permissions.",
+    "Create a squads multisig account on Solana blockchain. Expects a name, list of owner addresses, threshold, and permissions. SECURITY: For critical treasuries or upgrades, use 6+ members, 4/6+ threshold, time locks, and avoid ALL permissions for any single user.",
   schema: {
-    name: z.string().min(1).max(50).describe("Name of the multisig account"),
+    name: z
+      .string()
+      .min(1)
+      .max(50)
+      .describe(
+        "Name of the multisig account. SECURITY: Use a descriptive name for auditability."
+      ),
     members: z
       .array(z.string())
       .min(1)
       .describe(
-        "List of owners for the multisig account, always includes the creator"
+        "List of owners for the multisig account, always includes the creator. SECURITY: 6+ members recommended for critical treasuries or upgrades. Use hardware wallets for all signers."
       ),
     threshold: z
       .number()
       .int()
       .min(1)
-      .describe("Number of owners required to approve a transaction"),
+      .describe(
+        "Number of owners required to approve a transaction. SECURITY: 4/6 or higher recommended for treasury/upgrade accounts."
+      ),
     permissionForMembers: z
       .union([
         z.literal("ALL"),
         z.array(z.enum(["VOTE", "EXECUTE", "INITIATE"])),
       ])
-      .describe("Permission for members")
+      .describe(
+        "Permission for members. SECURITY: Avoid 'ALL'; separate INITIATE and EXECUTE roles for best security."
+      )
       .optional()
       .default("ALL"),
     permissionForCreator: z
@@ -36,10 +46,20 @@ const createSquadsMultisigTool = {
         z.literal("ALL"),
         z.array(z.enum(["VOTE", "EXECUTE", "INITIATE"])),
       ])
-      .describe("Permission for creator")
+      .describe(
+        "Permission for creator. SECURITY: Avoid 'ALL'; separate INITIATE and EXECUTE roles for best security."
+      )
       .optional()
       .default("ALL"),
-    timeLock: z.number().int().min(0).optional().default(0),
+    timeLock: z
+      .number()
+      .int()
+      .min(0)
+      .optional()
+      .default(0)
+      .describe(
+        "Time lock in seconds. SECURITY: 3600s+ for Reserve, 600s+ for Program Upgrade recommended."
+      ),
   },
   async run(args: {
     name: string;
@@ -139,7 +159,8 @@ const createSquadsMultisigTool = {
           },
           null,
           2
-        )
+        ),
+        "Next step: Create your first transaction, then create a proposal for it to begin the approval process."
       );
     } catch (e: any) {
       return mcpError("Failed to create squads multisig", e?.message);

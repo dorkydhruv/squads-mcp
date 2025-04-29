@@ -10,6 +10,10 @@ import executeVaultTransaction from "./executeVaultTransaction";
 import getMultisigAccountTool from "./getMultisigAccount";
 import fundVault from "./fundVault";
 import transferSolFromVault from "./transferSolFromVault";
+import getProposalsTool from "./getProposals";
+import getProposalTool from "./getProposal";
+import auditMultisigSecurity from "./auditMultisigSecurity";
+import getAssetsTool from "./getAssets";
 
 export const sqdsTools = [
   createSquadsMultisigTool,
@@ -24,4 +28,8 @@ export const sqdsTools = [
   getMultisigAccountTool,
   fundVault,
   transferSolFromVault,
+  getProposalsTool,
+  getProposalTool,
+  auditMultisigSecurity,
+  getAssetsTool,
 ];

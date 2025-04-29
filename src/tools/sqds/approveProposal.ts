@@ -7,15 +7,23 @@ import { PublicKey } from "@solana/web3.js";
 const approveProposal = {
   name: "APPROVE_PROPOSAL",
   description:
-    "Approve a proposal for a Squads multisig transaction. Member must have 'Voter' permissions.",
+    "Approve a proposal for a Squads multisig transaction. Member must have 'Voter' permissions. SECURITY: Always verify the proposal details and transaction index before approving. Use a secure device and follow the two-minute rule for approvals.",
   schema: {
-    multisigAddress: z.string().describe("The Squads multisig address."),
+    multisigAddress: z
+      .string()
+      .describe(
+        "The Squads multisig address. SECURITY: Double-check this address before approving."
+      ),
     transactionIndex: z
       .union([z.string(), z.number()])
-      .describe("The transaction index to approve (as string or number)."),
+      .describe(
+        "The transaction index to approve (as string or number). SECURITY: Confirm this matches the intended proposal."
+      ),
     member: z
       .string()
-      .describe("The public key of the member approving the proposal."),
+      .describe(
+        "The public key of the member approving the proposal. SECURITY: Use a hardware wallet if possible."
+      ),
   },
   async run(args: {
     multisigAddress: string;
@@ -53,7 +61,8 @@ const approveProposal = {
           },
           null,
           2
-        )
+        ),
+        "Next step: Check the proposal status with GET_PROPOSAL. If enough approvals are collected, proceed to execute the transaction."
       );
     } catch (e: any) {
       return mcpError("Failed to approve proposal", e?.message);

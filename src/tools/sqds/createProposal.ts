@@ -7,15 +7,23 @@ import { PublicKey } from "@solana/web3.js";
 const createProposal = {
   name: "CREATE_PROPOSAL",
   description:
-    "Create a proposal for a Squads multisig transaction. Proposals are required for voting and execution. Use the transactionIndex from your vault or config transaction.",
+    "Create a proposal for a Squads multisig transaction. Proposals are required for voting and execution. SECURITY: Always verify the transaction index and proposal details. Use a secure device to create proposals for critical actions.",
   schema: {
-    multisigAddress: z.string().describe("The Squads multisig address."),
+    multisigAddress: z
+      .string()
+      .describe(
+        "The Squads multisig address. SECURITY: Double-check this address before creating a proposal."
+      ),
     transactionIndex: z
       .union([z.string(), z.number()])
-      .describe("The transaction index to propose (as string or number)."),
+      .describe(
+        "The transaction index to propose (as string or number). SECURITY: Confirm this matches the intended transaction."
+      ),
     creator: z
       .string()
-      .describe("The public key of the member creating the proposal."),
+      .describe(
+        "The public key of the member creating the proposal. SECURITY: Use a hardware wallet if possible."
+      ),
   },
   async run(args: {
     multisigAddress: string;
@@ -53,7 +61,8 @@ const createProposal = {
           },
           null,
           2
-        )
+        ),
+        "Next step: Have signers approve this proposal. Use the APPROVE_PROPOSAL tool, then check the proposal status with GET_PROPOSAL."
       );
     } catch (e: any) {
       return mcpError("Failed to create proposal", e?.message);
