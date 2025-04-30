@@ -2,6 +2,10 @@
 
 ![Squads MCP](squads.png)
 
+
+[![npm version](https://img.shields.io/npm/v/squads-mcp.svg)](https://www.npmjs.com/package/squads-mcp)
+[![npm downloads](https://img.shields.io/npm/dm/squads-mcp.svg)](https://www.npmjs.com/package/squads-mcp)
+
 A secure Model Context Protocol (MCP) implementation for Squads multisig management on Solana blockchain. This toolkit prioritizes security at every step while enabling LLMs to safely interact with multisig accounts.
 
 ## 🔐 Security-First Design
@@ -83,6 +87,21 @@ This project leverages the Model Context Protocol (MCP) to enable secure interac
 
 ### Installation
 
+#### Option 1: From NPM (Recommended)
+
+```bash
+# Using npm
+npm install squads-mcp
+
+# Using yarn
+yarn add squads-mcp
+
+# Using pnpm
+pnpm add squads-mcp
+```
+
+#### Option 2: From Source
+
 ```bash
 git clone https://github.com/dorkydhruv/squads-mcp.git
 cd squads-mcp
@@ -98,7 +117,8 @@ pnpm build
     "squads-mcp": {
       "command": "node",
       "args": [
-        "/ABSOLUTE/PATH/TO/YOUR/MCP/PROJECT/FILE" // e.g ~/Projects/squads-mcp/dist/index.js
+        "node_modules/squads-mcp/dist/index.js" // If installed from npm
+        // OR use "/ABSOLUTE/PATH/TO/YOUR/MCP/PROJECT/FILE" if built from source
       ]
     }
   }
@@ -139,6 +159,27 @@ pnpm build
 - `FUND_VAULT`: Send SOL to a vault
 - `TRANSFER_SOL_FROM_VAULT`: Send SOL from a vault
 
+## 🛠️ Security Audit Tool: Technical Deep Dive
+
+The `AUDIT_MULTISIG_SECURITY` tool provides enterprise-grade security analysis of Squads multisig configurations:
+
+### Technical Implementation
+
+- **Quantitative Security Scoring**: Implements a multi-dimensional security algorithm (0-100) evaluating 15+ risk factors including threshold ratios, permission structures, and time lock durations
+- **Automated Vulnerability Detection**: Scans for common security misconfigurations including single-point failures, inadequate thresholds, and insufficient time locks
+- **Role-Based Access Control Analysis**: Evaluates separation of duties across INITIATE, EXECUTE, and VOTE permissions, flagging cases where excessive permissions are concentrated
+- **Risk Assessment Matrix**: Categorizes findings into Critical, High, Medium, and Low severity with color-coded outputs and remediation recommendations
+
+### Security Features
+
+- **Threshold Optimization Engine**: Calculates optimal threshold settings based on multisig purpose, member count, and asset value exposure
+- **Time Lock Validation**: Enforces minimum time lock periods calibrated to risk profiles (1+ hour for Reserve, 10+ minutes for Upgrades, etc.)
+- **Configuration Hardening**: Generates specific security-hardening recommendations with implementation instructions
+- **Compliance Verification**: Checks configurations against industry best practices for Solana multisig management
+- **JSON Export**: Provides machine-readable output for integration with security monitoring systems
+
+The tool was developed using TypeScript with specialized cryptographic validation routines and a proprietary scoring algorithm based on blockchain security research.
+
 ## 🔒 Security Recommendations
 
 1. **Always verify addresses**: Double-check multisig addresses before operations
@@ -164,12 +205,13 @@ This project is built on the [Model Context Protocol (MCP)](https://github.com/m
 
 ## 🧑‍💻 Developer Notes
 
-- All tools are registered in `src/tools/index.ts` and exposed via the MCP server.
+- All tools are registered in index.ts and exposed via the MCP server.
 - The codebase is modular, making it easy to extend with new tools or adapt to future MCP or Squads protocol updates.
 - Security is a process: regularly review, audit, and update your configuration and dependencies.
 
-## 📕 Aditional Resources
+## 📕 Additional Resources
 
 - [Squads Protocol](https://squads.so/)
 - [Model Context Protocol](https://github.com/modelcontextprotocol)
 - [Solana Foundation](https://solana.com/)
+- [NPM Package](https://www.npmjs.com/package/squads-mcp)
