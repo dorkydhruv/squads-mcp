@@ -2,7 +2,6 @@
 
 ![Squads MCP](squads.png)
 
-
 [![npm version](https://img.shields.io/npm/v/squads-mcp.svg)](https://www.npmjs.com/package/squads-mcp)
 [![npm downloads](https://img.shields.io/npm/dm/squads-mcp.svg)](https://www.npmjs.com/package/squads-mcp)
 
@@ -63,16 +62,12 @@ The implementation promotes Squads security best practices:
    - Program Upgrade: 600+ seconds (10 minutes)
    - Operations: 300+ seconds (5 minutes)
 
-4. **Hardware Security**:
-   - Use hardware wallets for critical multisigs
-   - Consider multiple hardware wallet vendors
-
 ## 🔧 How It Works
 
 This project leverages the Model Context Protocol (MCP) to enable secure interaction between LLMs and Squads multisig functionality. MCP provides a standardized way for AI models to use external tools while maintaining security and context.
 
 ```
-┌─────────┐    ┌──────────────┐    ┌────────────┐    ┌────────┐
+┌─────────┐    ┌──────────────┐    ┌────────────┘    ┌────────┐
 │   LLM   │<-->│ MCP Protocol │<-->│ Squads MCP │<-->│ Solana │
 └─────────┘    └──────────────┘    └────────────┘    └────────┘
 ```
@@ -193,12 +188,22 @@ The tool was developed using TypeScript with specialized cryptographic validatio
 
 This project is built on the [Model Context Protocol (MCP)](https://github.com/modelcontextprotocol/spec), an open protocol for secure, context-aware automation and agent workflows. MCP enables tools and agents (including LLMs) to interact with user data and actions in a controlled, auditable, and privacy-preserving way. By leveraging MCP, Squads MCP ensures that all tool invocations are contextually validated and logged, reducing the risk of unauthorized or unintended actions.
 
+## 🎥 Live Demos
+
+### MCP in GitHub Copilot
+
+<iframe src="https://drive.google.com/file/d/10wW-xf31z6b-NoyOIf3Up7qgR45qh7e1/preview" width="640" height="360" allow="autoplay"></iframe>
+
+### MCP in Claude Desktop App
+
+<iframe src="https://drive.google.com/file/d/1qOQQnR9SbYzMQjP_1OE82XxH4qFjbZvD/preview" width="640" height="360" allow="autoplay"></iframe>
+
 ## 🛡️ Additional Security Considerations
 
 - **No Third-Party Custody**: All private keys are managed and stored locally. There is no cloud sync, remote backup, or third-party custody, minimizing the risk of remote compromise.
 - **Direct Solana RPC Usage**: All blockchain interactions are performed directly from your environment, with no intermediaries or delegated signing. Only the locally stored private key is used for signing transactions, and only with explicit user action.
 - **Transparency and Auditability**: Tools like `SHOW_CONFIG`, `GET_MULTISIG_ACCOUNT`, and `GET_PROPOSALS` provide full visibility into your configuration, multisig state, and proposal history, supporting transparency and review.
-- **Explicit Security Warnings**: Tool schemas and prompts include explicit warnings and verification steps (e.g., "Double-check this address", "Use a hardware wallet for large amounts").
+- **Explicit Security Warnings**: Tool schemas and prompts include explicit warnings and verification steps (e.g., "Double-check this address").
 - **Operational Security Guidance**: The built-in audit tool provides actionable recommendations, such as using hardware wallets, segmenting treasuries, and rotating keys. Time lock checks enforce best practices for critical accounts.
 - **No Implicit Actions**: All actions require explicit invocation and confirmation, reducing the risk of accidental or automated misuse.
 - **Minimal Attack Surface**: The codebase is designed to minimize dependencies and avoid unnecessary network exposure. Only essential ports and endpoints are enabled.
