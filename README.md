@@ -190,13 +190,14 @@ This project is built on the [Model Context Protocol (MCP)](https://github.com/m
 
 ## 🎥 Live Demos
 
-### MCP in GitHub Copilot
-
-[![GitHub Copilot Demo](https://microsoft.github.io/BeLuxPartnerTechTeam/images/AzureISV/copilot.png)](https://drive.google.com/file/d/10wW-xf31z6b-NoyOIf3Up7qgR45qh7e1/preview)
-
 ### MCP in Claude Desktop App
 
-[![Claude Desktop Demo](https://www.androidheadlines.com/wp-content/uploads/2024/11/Claude-Desktop-1420x799.webp)](https://drive.google.com/file/d/1qOQQnR9SbYzMQjP_1OE82XxH4qFjbZvD/preview)
+[![Claude Desktop Demo](https://www.androidheadlines.com/wp-content/uploads/2024/11/Claude-Desktop-1420x799.webp)](https://drive.google.com/file/d/10wW-xf31z6b-NoyOIf3Up7qgR45qh7e1/preview)
+
+### MCP in GitHub Copilot
+
+[![GitHub Copilot Demo](https://microsoft.github.io/BeLuxPartnerTechTeam/images/AzureISV/copilot.png)](https://drive.google.com/file/d/1qOQQnR9SbYzMQjP_1OE82XxH4qFjbZvD/preview)
+
 
 ## 🛡️ Additional Security Considerations
 
