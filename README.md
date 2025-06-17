@@ -1,9 +1,9 @@
 # Squads MCP: Secure Multisig Management for Solana
-
 ![Squads MCP](squads.png)
 
 [![npm version](https://img.shields.io/npm/v/squads-mcp.svg)](https://www.npmjs.com/package/squads-mcp)
 [![npm downloads](https://img.shields.io/npm/dm/squads-mcp.svg)](https://www.npmjs.com/package/squads-mcp)
+[![Verified on MseeP](https://mseep.ai/badge.svg)](https://mseep.ai/app/d9eef199-d553-4d42-9398-77189888430b)
 
 A secure Model Context Protocol (MCP) implementation for Squads multisig management on Solana blockchain. This toolkit prioritizes security at every step while enabling LLMs to safely interact with multisig accounts.
 
