@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/dorkydhruv-squads-mcp-badge.png)](https://mseep.ai/app/dorkydhruv-squads-mcp)
+
 # Squads MCP: Secure Multisig Management for Solana
 ![Squads MCP](squads.png)
 
